@@ -13,16 +13,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: getAppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       body: getBody(),
     );
   }
-}
-
-getAppBar() {
-  return AppBar(
-    backgroundColor: Colors.black,
-  );
 }
 
 getBody() {
