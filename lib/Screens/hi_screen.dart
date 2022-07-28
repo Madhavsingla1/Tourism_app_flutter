@@ -15,19 +15,19 @@ class _HiScreenState extends State<HiScreen> {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints.expand(),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage("assets/img/backGroundImg.jpg"),
-              fit: BoxFit.cover)),
+              fit: BoxFit.fill)),
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.fromLTRB(20, 100, 20, 50),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Colors.grey.withOpacity(0.5),
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 50.0),
+              padding: const EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 0.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -203,7 +203,7 @@ class _HiScreenState extends State<HiScreen> {
             ),
           ),
         ),
-        // backgroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
       ),
     );
   }
