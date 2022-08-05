@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tourism_app/Screens/login_screen.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:tourism_app/Screens/signup_screen.dart';
+// import 'package:tourism_app/Screens/signup_screen.dart';
+import 'package:tourism_app/Screens/home_page.dart';
 
 class HiScreen extends StatefulWidget {
   HiScreen({Key? key}) : super(key: key);
@@ -75,7 +76,8 @@ class _HiScreenState extends State<HiScreen> {
                         Navigator.push(
                             context,
                             PageTransition(
-                                child: SignUpScreen(),
+                                // child: SignUpScreen(),
+                                child: home_page(),
                                 type: PageTransitionType.fade));
                       },
                       child: const Text(
