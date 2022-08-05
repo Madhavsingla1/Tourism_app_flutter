@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class home_page extends StatefulWidget {
-  home_page({Key? key}) : super(key: key);
+class MobileLayoutPage extends StatefulWidget {
+  MobileLayoutPage({Key? key}) : super(key: key);
 
   @override
-  State<home_page> createState() => _homeState();
+  State<MobileLayoutPage> createState() => _MobileLayoutPageState();
 }
 
-class _homeState extends State<home_page> {
+class _MobileLayoutPageState extends State<MobileLayoutPage> {
   List<String> navbar = [
     "All",
     "Popular",
@@ -109,7 +109,7 @@ class _homeState extends State<home_page> {
           )
         ],
       ),
-      bottomNavigationBar: GNav(
+      bottomNavigationBar: const GNav(
         gap: 10,
         activeColor: Colors.pink,
         // ignore: prefer_const_literals_to_create_immutables

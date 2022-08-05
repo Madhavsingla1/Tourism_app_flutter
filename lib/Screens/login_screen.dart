@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:passwordfield/passwordfield.dart';
+import 'package:tourism_app/resources/auth_methods.dart';
+import 'package:tourism_app/utils/utils.dart';
+import 'package:tourism_app/widgets/text_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -9,6 +11,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _passwordContorller = TextEditingController();
+  final TextEditingController _emailContorller = TextEditingController();
+  var flag = true;
+  @override
+  void dispose() {
+    super.dispose();
+    _passwordContorller.dispose();
+    _emailContorller.dispose();
+  }
+
+  void login() async {
+    String res = await AuthMethod().login(
+        email: _emailContorller.text, password: _passwordContorller.text);
+    if (res == "Success") {
+      ShowSnackBar(res, context);
+    } else {
+      ShowSnackBar(res, context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,27 +38,18 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
       ),
-      body: getBody(),
-    );
-  }
-}
-
-getBody() {
-  var flag = true;
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(30.0, 150.0, 30.0, 200.0),
-    child: Container(
-      // color: Colors.grey.withOpacity(0.3),
-      decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3),
-          border: Border.all(color: Colors.black),
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(20, 60, 0.0, 20),
-            child: Text(
+      body: Container(
+        // color: Colors.grey.withOpacity(0.3),
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.3),
+            border: Border.all(color: Colors.black),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
               "Log In",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -44,72 +57,53 @@ getBody() {
                 color: Colors.white,
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(20),
-            child: TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            const SizedBox(
+              height: 24,
+            ),
+            TextFieldInput(
+                ispass: false,
+                hinttext: 'Enter Email Id',
+                textEditingController: _emailContorller,
+                textInputType: TextInputType.emailAddress),
+            const SizedBox(
+              height: 24,
+            ),
+            TextFieldInput(
+                ispass: true,
+                hinttext: "Password",
+                textEditingController: _passwordContorller,
+                textInputType: TextInputType.text),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: TextButton(
+                style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(460, 70)),
+                  backgroundColor: MaterialStateProperty.all(Colors.green),
                 ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1.6),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                hintText: 'Enter Email Id',
+                onPressed: login,
+                child: const Text(
+                  "Continue",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: TextField(
-              obscureText: flag,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1.6),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                hintText: 'Password',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: TextButton(
-              style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(460, 70)),
-                backgroundColor: MaterialStateProperty.all(Colors.green),
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Continue",
+            const Padding(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                "Forgot your password?",
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.green,
+                  fontSize: 16.0,
                 ),
               ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              "Forgot your password?",
-              style: TextStyle(
-                color: Colors.green,
-                fontSize: 16.0,
-              ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
