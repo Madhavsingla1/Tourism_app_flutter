@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ResponsivePage extends StatefulWidget {
   final mobilelayoutpage;
   final weblayoutpage;
-  ResponsivePage(
+  const ResponsivePage(
       {Key? key, required this.mobilelayoutpage, required this.weblayoutpage})
       : super(key: key);
 

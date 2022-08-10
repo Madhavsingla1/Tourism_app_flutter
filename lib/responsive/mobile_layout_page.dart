@@ -1,56 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:tourism_app/utils/gloabal_used_widgets.dart';
 
 class MobileLayoutPage extends StatefulWidget {
-  MobileLayoutPage({Key? key}) : super(key: key);
+  const MobileLayoutPage({Key? key}) : super(key: key);
 
   @override
   State<MobileLayoutPage> createState() => _MobileLayoutPageState();
 }
 
 class _MobileLayoutPageState extends State<MobileLayoutPage> {
-  List<String> navbar = [
-    "All",
-    "Popular",
-    "Rating",
-    "Most searched",
-    "Budget",
-    "Mountains",
-    "Rivers",
-    "Family",
-    "Couples"
+  late PageController _pageController;
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
+
+  final bottombar = ["Home", "Search", "Alerts", "Profile"];
+  final bottombaricon = [
+    Icons.house,
+    Icons.search_outlined,
+    Icons.notifications_on,
+    Icons.person_pin
   ];
-  List<String> dest = [
-    "Eiffel  Tower",
-    "Sky Dive",
-    "Taj Mahal",
-    "Danveer Mountains",
-    "London Bridge",
-    "Boat House",
-    "Beach",
-    "Arab"
-  ];
-  List<String> place = [
-    "Paris,France",
-    "United Arab Emirates,Dubai",
-    "Agra,India",
-    "Danver,Colorado",
-    "London,UK",
-    "Kashmir,India",
-    "Mumbai,India",
-    "Afganistan"
-  ];
-  List<String> pname = [
-    "Waterfall",
-    "Lakes",
-    "Mountains",
-    "Deserts",
-    "Beaches",
-    "Forests",
-    "Campfire",
-    "Glacier"
-  ];
-  int change = 0;
+  void navigatepage(value) {
+    _pageController.jumpToPage(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,11 +49,12 @@ class _MobileLayoutPageState extends State<MobileLayoutPage> {
               color: Colors.black,
             ),
             Text(
-              "TOURISM",
+              "TOURLY",
               style: TextStyle(
                   color: Colors.black,
+                  fontFamily: 'Dancing Script',
                   fontSize: 30,
-                  fontWeight: FontWeight.w100),
+                  fontWeight: FontWeight.w700),
             ),
             Icon(
               Icons.bar_chart,
@@ -79,190 +63,30 @@ class _MobileLayoutPageState extends State<MobileLayoutPage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-              child: const Text(
-                "Discover Natural Beauty Of The Earth.",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w300),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 15, 20, 20),
-              child: TextField(
-                decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    fillColor: Colors.white,
-                    hintText: 'search "Singapore"',
-                    prefixIcon: Icon(
-                      Icons.search,
-                      // color: Colors.black,
-                    ),
-                    suffixIcon: Icon(
-                      Icons.tune_sharp,
-                      // color: Colors.black,
-                    )),
-              ),
-            ),
-            Container(
-              height: 40,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: navbar.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        change = index;
-                      });
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                          color: change == index ? Colors.pink : Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          navbar[index],
-                          style: TextStyle(
-                              color:
-                                  change == index ? Colors.white : Colors.grey),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                  children: List.generate(8, (index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 8),
-                      width: 300,
-                      height: 200,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage(
-                                  "assets/destination/image_${index + 1}.jpg"))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(40, 15, 0, 0),
-                      child: Text(
-                        dest[index],
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: Row(
-                        children: [
-                          Icon(Icons.place_outlined),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Text(
-                              place[index],
-                              style: TextStyle(fontSize: 10),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                );
-              })),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Catagories",
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    "See all",
-                    style: TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.w300),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(8, ((index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
-                        child: CircleAvatar(
-                          radius: 25,
-                          backgroundImage: AssetImage(
-                              "assets/catagories/pic_${index + 1}.jpg"),
-                        ),
-                      ),
-                      Text(
-                        pname[index],
-                        style: TextStyle(fontSize: 15),
-                      )
-                    ],
-                  );
-                })),
-              ),
-            )
-          ],
-        ),
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: PageNavigation,
       ),
       bottomNavigationBar: GNav(
         gap: 0,
-        tabMargin: EdgeInsets.symmetric(horizontal: 2),
+        color: Colors.black,
+        tabMargin: const EdgeInsets.symmetric(horizontal: 2),
         iconSize: 20,
         textSize: 5,
         activeColor: Colors.pink,
-        // ignore: prefer_const_literals_to_create_immutables
-        tabs: [
-          GButton(
-            icon: Icons.house,
-            text: "Home",
-          ),
-          GButton(
-            icon: Icons.search_outlined,
-            text: "Search",
-          ),
-          GButton(
-            icon: Icons.notifications_on,
-            text: "Alerts",
-          ),
-          GButton(
-            icon: Icons.person_pin,
-            text: "Profile",
-          ),
-        ],
+        tabs: List.generate(
+          bottombar.length,
+          (index) {
+            return GButton(
+              icon: bottombaricon[index],
+              text: bottombar[index],
+            );
+          },
+        ),
+        onTabChange: (value) {
+          navigatepage(value);
+        },
       ),
     );
   }

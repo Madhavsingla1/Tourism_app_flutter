@@ -1,11 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:tourism_app/Screens/login_screen.dart';
-import 'package:tourism_app/responsive/mobile_layout_page.dart';
-import 'package:tourism_app/responsive/responsive_page.dart';
-import 'package:tourism_app/responsive/web_layout_page.dart';
+import 'import_files.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +48,7 @@ class MyApp extends StatelessWidget {
               color: Colors.amber,
             ));
           }
-          return LoginScreen();
+          return HiScreen();
         },
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourism_app/resources/auth_methods.dart';
-import 'package:tourism_app/utils/utils.dart';
+import 'package:tourism_app/utils/gloabal_used_widgets.dart';
 import 'package:tourism_app/widgets/text_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String res = await AuthMethod().login(
         email: _emailContorller.text, password: _passwordContorller.text);
     if (res == "Success") {
+      Navigator.of(context).pop();
       ShowSnackBar(res, context);
     } else {
       ShowSnackBar(res, context);

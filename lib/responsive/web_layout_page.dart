@@ -10,7 +10,7 @@ class WebLayoutPage extends StatefulWidget {
 class _WebLayoutPageState extends State<WebLayoutPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text("This is Web"),
       ),

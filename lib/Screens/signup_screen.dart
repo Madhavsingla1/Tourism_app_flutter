@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourism_app/resources/auth_methods.dart';
-import 'package:tourism_app/utils/utils.dart';
+import 'package:tourism_app/utils/gloabal_used_widgets.dart';
 import 'package:tourism_app/widgets/text_field_input.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -32,6 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         username: _usernameContorller.text,
         confirmpass: _confirmContorller.text);
     if (res == "Success") {
+      Navigator.of(context).pop();
       ShowSnackBar(res, context);
     } else {
       ShowSnackBar(res, context);

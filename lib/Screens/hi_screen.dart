@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tourism_app/Screens/login_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourism_app/Screens/signup_screen.dart';
-import 'package:tourism_app/Screens/home_page.dart';
 
 class HiScreen extends StatefulWidget {
   HiScreen({Key? key}) : super(key: key);
