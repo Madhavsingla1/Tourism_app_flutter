@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  carousel_slider: ^4.1.1
   cloud_firestore: ^3.2.1
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.4.1
@@ -36,9 +37,11 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.2.6
   flutter_svg: ^1.1.1+1
+  font_awesome_flutter: ^10.1.0
   google_nav_bar: ^5.0.6
   image_picker: ^0.8.5+3
   page_transition: ^2.0.9
+  readmore: ^2.2.0
   syncfusion_flutter_datepicker: ^20.2.43
 
 flutter_native_splash:
@@ -46,12 +49,6 @@ flutter_native_splash:
   background_image: assets\1eE7mQ.png
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
