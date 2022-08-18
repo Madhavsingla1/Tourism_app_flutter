@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourism_app/Pages/mobile_place_detail_page.dart';
-import 'package:tourism_app/utils/gloabal_used_widgets.dart';
+import 'package:tourism_app/Pages/mobile_places_page.dart';
 
 class MobileHomePage extends StatefulWidget {
   const MobileHomePage({Key? key}) : super(key: key);
@@ -212,10 +212,19 @@ class _MobileHomePageState extends State<MobileHomePage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundImage: AssetImage(
-                          "assets/catagories/pic_${index + 1}.jpg",
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: const MobilePlacesPage(),
+                                  type: PageTransitionType.scale));
+                        },
+                        child: CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                            "assets/catagories/pic_${index + 1}.jpg",
+                          ),
                         ),
                       ),
                     ),
